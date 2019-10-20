@@ -2,20 +2,23 @@ import json
 import requests
 import datetime
 from dateutil.parser import parse
+import os
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 # helpers
-def read_json(path):
-    try:
-        with open(path, 'r') as jsonf:
-            contents = jsonf.read()
-            return json.load(jsonf)
-    except
+def read_json(path, verbose=False):
+    if not os.path.exists(path):
+        init_json(path)
+    with open(path, 'r') as jsonf:
+        contents = jsonf.read()
+    return json.loads(contents)
 
-def init_json
-    with open(path, 'w+') as jsonf:
-        if not jsonf.read():
-            json.dump({'Favorites': []}, jsonf)
-    return ret
+def init_json(path):
+    default_json = {'Favorites': []}
+    with open(path, 'w+') as f:
+        if not f.read():
+            json.dump(default_json, f)
 
 
 def write_json(path, dictionary):
