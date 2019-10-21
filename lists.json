@@ -1,12 +1,36 @@
 {
     "Favorites": [],
-    ".jj-default_list": "Favorites",
+    ".jj-default_list": "dele",
+    ".jj-display_num": 4,
+    ".jj-export_dir": "jisho_exports",
     "dele": [
+        {
+            "words": "被告人",
+            "reading": "ひこくにん",
+            "eng": "accused, defendant, prisoner at the bar",
+            "timestamp": "2019-10-21 16:11:42.251140",
+            "note": ""
+        },
         {
             "words": "逃亡",
             "reading": "とうぼう",
             "eng": "escape, flight, running away, elopement, fleeing",
-            "timestamp": "2019-10-21 15:32:15.235474"
+            "timestamp": "2019-10-21 16:12:09.819285",
+            "note": ""
+        },
+        {
+            "words": "依存症, 依存症",
+            "reading": "いぞんしょう",
+            "eng": "dependence (on alcohol, drugs, etc.)",
+            "timestamp": "2019-10-21 16:12:47.290249",
+            "note": ""
+        },
+        {
+            "words": "振るう, 揮う, 振う",
+            "reading": "ふるう",
+            "eng": "to swing, to wield (physically), to exert",
+            "timestamp": "2019-10-21 16:29:11.917939",
+            "note": ""
         }
     ]
 }
