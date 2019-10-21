@@ -1,61 +1,12 @@
 {
-    "Favorites": [
-        {
-            "words": "私, 私",
-            "reading": "わたくし",
-            "eng": "I, me",
-            "timestamp": "2019-10-20 20:08:41.827138"
-        },
-        {
-            "words": "憂き目, 憂目, うき目",
-            "reading": "うきめ",
-            "eng": "bitter experience, misery, distress, grief, sad thoughts, hardship",
-            "timestamp": "2019-10-20 21:29:39.338328"
-        },
-        {
-            "words": "囁く, 私語く",
-            "reading": "ささやく",
-            "eng": "to whisper, to murmur",
-            "timestamp": "2019-10-20 21:29:54.530993"
-        },
-        {
-            "words": "火",
-            "reading": "ひ",
-            "eng": "fire, flame, blaze",
-            "timestamp": "2019-10-20 22:09:37.249985"
-        },
-        {
-            "words": "今日わ",
-            "reading": "こんにちわ",
-            "eng": "hello, good day, good afternoon",
-            "timestamp": "2019-10-21 11:11:18.438543"
-        }
-    ],
+    "Favorites": [],
+    ".jj-default_list": "Favorites",
     "dele": [
-        {
-            "words": "試し, 験し, 験",
-            "reading": "ためし",
-            "eng": "trial, test",
-            "timestamp": "2019-10-21 00:22:21.966637"
-        },
-        {
-            "words": "DFSグループ",
-            "reading": "",
-            "eng": "DFS Galleria",
-            "timestamp": "2019-10-21 01:08:30.689413"
-        },
         {
             "words": "逃亡",
             "reading": "とうぼう",
             "eng": "escape, flight, running away, elopement, fleeing",
-            "timestamp": "2019-10-21 01:25:50.986087"
-        },
-        {
-            "words": "逃亡者",
-            "reading": "とうぼうしゃ",
-            "eng": "runaway, fugitive",
-            "timestamp": "2019-10-21 09:58:37.570769"
+            "timestamp": "2019-10-21 15:32:15.235474"
         }
-    ],
-    ".cur_list": "dele"
+    ]
 }

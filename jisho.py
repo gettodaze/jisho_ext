@@ -5,6 +5,7 @@ import logging
 
 class Jisho:
     def __init__(self, json_path=None, init_list=None):
+        self.handle_print(f'Welcome to John\'s Jisho. Type .h for help.', logging.debug)
         self.cur_word = {}
         self.prev_word = {}
         self.json_path = json_path or 'lists.json'
@@ -13,29 +14,35 @@ class Jisho:
         if init_list:
             self.change_list(init_list)
         self.num_shown = 0
-        self.handle_print('Welcome to John\'s Jisho.\nLoaded')
+        self.handle_print(f'Loaded {self.cur_list} from {self.json_path}.')
 
 
     def handle_input(self, inp):
         args = inp.split(maxsplit=1)
-        first_arg, second_arg = args[0].upper(), args[1]
+        if len(args) == 0:
+            return True
+        first_arg = args[0].upper()
+        second_arg = args[1] if len(args) > 1 else ''
         if first_arg == '.Q':
-            self.handle_print('Goodbye')
+            self.handle_print('Goodbye', logging.debug)
             return False
+        if first_arg in ['.H', '.HELP']:
+            self.handle_print(self.helpstring(), logging.debug)
         elif first_arg == '.CL':
             self.change_list(second_arg)
         elif first_arg == '.NL':
             self.new_list(second_arg)
         elif first_arg == 'M':
             self.print_cur_word()
-        elif inp.upper() == 'SL':
+        elif first_arg == '.SL':
             self.show_list()
-        elif inp.upper() == 'EL':
+        elif first_arg == '.EL':
             self.export_list()
+        elif first_arg == '.SAL':
+            self.handle_print('LISTS: ' + str(self.get_lists()))
         elif utils.check_alphanum(inp):
             self.handle_save_code(inp)
         else:
-            logging.info('Looking up: '+inp)
             self.lookup(inp)
         return True
 
@@ -46,18 +53,21 @@ class Jisho:
     def change_list(self, to_list):
         if to_list in self.get_lists():
             self.cur_list = to_list
-            logging.info("Changed list to "+to_list)
+            self.handle_print("Changed list to "+to_list)
         else:
-            logging.info("List "+to_list+" does not exist")
+            self.handle_print("List "+to_list+" does not exist")
 
     def new_list(self, new_list):
-        if new_list not in self.lists.keys():
-            logging.info('Added ')
+        if not new_list:
+            self.handle_print('You cannot have a list with a blank name')
+            return
+        if new_list not in self.get_lists():
+            self.handle_print('Added '+new_list)
             self.lists[new_list] = []
             self.cur_list = new_list
-            logging.info('Changing list to '+self.cur_list)
+            self.handle_print('Changing list to '+self.cur_list)
         else:
-            logging.info(f'{new_list} already exists!')
+            self.handle_print(f'{new_list} already exists!')
 
     def show_list(self):
         logging.info('show list')
@@ -92,10 +102,12 @@ class Jisho:
             toprint += f'Showing entries {show_low}-{show_high}/{num_entries}\n'
             print_str = utils.get_dictstring(self.cur_word, show_low-1, show_high)
             toprint += print_str + '\nPress m to show more.'
-        self.handle_print(toprint)
+        self.handle_print(toprint, logging.debug)
 
-    def handle_print(self, lines):
+    def handle_print(self, lines, logger=logging.info):
         print(lines)
+        if logger:
+            logger(lines)
 
 
     def save_entry(self, inp):
@@ -103,33 +115,45 @@ class Jisho:
         selected = utils.get_json_entry(self.cur_word, letter, num)
         selected['timestamp'] = datetime.datetime.now()
         if any([selected['words'] == x['words'] for x in self.lists[self.cur_list]]):
-            logging.info(f'{selected["words"]} already appears to be in {self.cur_list}')
+            self.handle_print(f'{selected["words"]} already appears to be in {self.cur_list}')
         else:
             self.lists[self.cur_list].append(selected)
             utils.write_json(self.json_path, self.lists)
-            logging.info(f'Saved to {self.cur_list}. {selected["words"]}:{selected["eng"]}.')
+            self.handle_print(f'Saved to {self.cur_list}. {selected["words"]}:{selected["eng"]}.')
 
 
     def export_list(self, path=None):
-        logging.info('Export list '+self.cur_list)
+        self.handle_print('Export list '+self.cur_list)
         path = path or 'export.txt'
         toline = lambda e: e['words'] + ':' + e['reading'] + '\n' + e['eng']
         cur_list_dict = self.lists[self.cur_list]
         with open(path, 'w+', encoding='utf-8') as outfile:
             content = '~'.join([toline(e) for e in cur_list_dict])
             print(content, file=outfile)
+    
+    def helpstring(self):
+        return f"""John's Jisho.
+Current list: {self.cur_list}
+Current json: {self.json_path}
+Type in a keyword or a special argument. Arguments
+Q: quit
+.H: helpstring
+.CL <list>: change list to <list>
+.NL <list>: create new list <list>
+.SL: show current list
+.EL: export list
+M: more definitions
+letter+number combo: save word-sense pair to list."""
 
 def main():
     logging.basicConfig(
         handlers=[logging.FileHandler('jisho.log', 'a+', 'utf-8')],
         level=logging.INFO)
     j = Jisho()
-    'Welcome to Jisho.'
     cont = True
     while cont:
         inp = input('>>> ')
         cont = j.handle_input(inp)
-    print('Goodbye')
 
 
 if __name__ == '__main__':
