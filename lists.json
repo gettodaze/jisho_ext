@@ -1,1 +1,42 @@
-{"1": 2}
+{
+    "Favorites": [
+        {
+            "words": "私, 私",
+            "reading": "わたくし",
+            "eng": "I, me",
+            "timestamp": "2019-10-20 20:08:41.827138"
+        },
+        {
+            "words": "憂き目, 憂目, うき目",
+            "reading": "うきめ",
+            "eng": "bitter experience, misery, distress, grief, sad thoughts, hardship",
+            "timestamp": "2019-10-20 21:29:39.338328"
+        },
+        {
+            "words": "囁く, 私語く",
+            "reading": "ささやく",
+            "eng": "to whisper, to murmur",
+            "timestamp": "2019-10-20 21:29:54.530993"
+        },
+        {
+            "words": "火",
+            "reading": "ひ",
+            "eng": "fire, flame, blaze",
+            "timestamp": "2019-10-20 22:09:37.249985"
+        }
+    ],
+    "dele": [
+        {
+            "words": "試験管立て",
+            "reading": "しけんかんたて",
+            "eng": "test tube stand",
+            "timestamp": "2019-10-20 21:34:17.819466"
+        },
+        {
+            "words": "後悔",
+            "reading": "こうかい",
+            "eng": "regret, repentance, remorse",
+            "timestamp": "2019-10-20 21:43:52.214916"
+        }
+    ]
+}
