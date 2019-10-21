@@ -4,24 +4,30 @@ import logging
 
 
 class Jisho:
-    def __init__(self, json_path=None, cur_list=None):
+    def __init__(self, json_path=None, init_list=None):
         self.cur_word = {}
         self.prev_word = {}
         self.json_path = json_path or 'lists.json'
         self.lists = utils.read_json(self.json_path)
-        if cur_list:
-            self.lists['.cur_lists'] = cur_list
-        self.cur_list = self.lists['.cur_list']
+        self.cur_list = self.lists['.jj-default_list']
+        if init_list:
+            self.change_list(init_list)
+        self.num_shown = 0
+        self.handle_print('Welcome to John\'s Jisho.\nLoaded')
 
 
     def handle_input(self, inp):
-        is_alphanum = utils.check_alphanum(inp)
-        if inp.upper() == 'Q':
+        args = inp.split(maxsplit=1)
+        first_arg, second_arg = args[0].upper(), args[1]
+        if first_arg == '.Q':
+            self.handle_print('Goodbye')
             return False
-        elif inp.upper() == 'CL':
-            self.change_list()
-        elif inp.upper() == 'NL':
-            self.new_list()
+        elif first_arg == '.CL':
+            self.change_list(second_arg)
+        elif first_arg == '.NL':
+            self.new_list(second_arg)
+        elif first_arg == 'M':
+            self.print_cur_word()
         elif inp.upper() == 'SL':
             self.show_list()
         elif inp.upper() == 'EL':
@@ -29,31 +35,29 @@ class Jisho:
         elif utils.check_alphanum(inp):
             self.handle_save_code(inp)
         else:
-            logging.info('looking up: '+inp)
+            logging.info('Looking up: '+inp)
             self.lookup(inp)
         return True
 
-    def change_list(self):
-        logging.info('change list')
-        all_lists = [k for k in self.lists.keys() if k[0] is not '.']
-        inp = input(f'Please input list name from ({", ".join(all_lists)}): ')
-        if inp in self.lists.keys():
-            self.cur_list = inp
-            self.lists['.cur_list'] = inp
-            logging.info("Changed list to "+inp)
-        else:
-            logging.info("List "+inp+" does not exist")
+    def get_lists(self):
+        return list(k for k in self.lists.keys() if not k.startswith('.jj'))
 
-    def new_list(self):
-        logging.info('new list')
-        inp = input('Please input new list name: ')
-        if inp not in self.lists.keys():
+
+    def change_list(self, to_list):
+        if to_list in self.get_lists():
+            self.cur_list = to_list
+            logging.info("Changed list to "+to_list)
+        else:
+            logging.info("List "+to_list+" does not exist")
+
+    def new_list(self, new_list):
+        if new_list not in self.lists.keys():
             logging.info('Added ')
-            self.lists[inp] = []
-            self.cur_list = inp
+            self.lists[new_list] = []
+            self.cur_list = new_list
             logging.info('Changing list to '+self.cur_list)
         else:
-            logging.info(f'{inp} already exists!')
+            logging.info(f'{new_list} already exists!')
 
     def show_list(self):
         logging.info('show list')
@@ -77,17 +81,21 @@ class Jisho:
             self.print_cur_word()
 
     def print_cur_word(self):
+        toprint = ''
         num_entries = len(self.cur_word)
-        if num_entries > 3:
-            num_shown = 0
-            cont = True
-            while num_shown < num_entries and cont:
-                show_low, show_high = num_shown + 1, min(num_entries, num_shown+3)
-                num_shown = show_high
-                print(f'Showing entries {show_low}-{show_high}/{num_entries}')
-                print_str = utils.get_dictstring(self.cur_word, show_low-1, show_high)
-                print(print_str)
-                cont = input('Show more? [y/n]: ').upper() in ['Y', 'YES']
+        if self.num_shown >= num_entries:
+            self.num_shown == 0
+        if not num_entries:
+            toprint += 'No word to print'
+        else:
+            show_low, show_high = self.num_shown + 1, min(num_entries, self.num_shown+3)
+            toprint += f'Showing entries {show_low}-{show_high}/{num_entries}\n'
+            print_str = utils.get_dictstring(self.cur_word, show_low-1, show_high)
+            toprint += print_str + '\nPress m to show more.'
+        self.handle_print(toprint)
+
+    def handle_print(self, lines):
+        print(lines)
 
 
     def save_entry(self, inp):
@@ -111,8 +119,10 @@ class Jisho:
             content = '~'.join([toline(e) for e in cur_list_dict])
             print(content, file=outfile)
 
-
-if __name__ == '__main__':
+def main():
+    logging.basicConfig(
+        handlers=[logging.FileHandler('jisho.log', 'a+', 'utf-8')],
+        level=logging.INFO)
     j = Jisho()
     'Welcome to Jisho.'
     cont = True
@@ -120,3 +130,8 @@ if __name__ == '__main__':
         inp = input('>>> ')
         cont = j.handle_input(inp)
     print('Goodbye')
+
+
+if __name__ == '__main__':
+    main()
+
