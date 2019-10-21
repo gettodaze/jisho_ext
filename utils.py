@@ -24,7 +24,8 @@ def read_json(path):
 
 def init_json(path):
     logging.info('Creating file at '+path)
-    default_json = {'Favorites': []}
+    default_json = {'Favorites': [],
+                    '.jj-default_list': 'Favorites'}
     with open(path, 'w+') as f:
         if not f.read():
             json.dump(default_json, f)
