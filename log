@@ -1,0 +1,43 @@
+INFO:root:Loading from lists.json
+INFO:root:looking up: hello
+INFO:root:got a response!
+INFO:root:looking up: koukou
+INFO:root:got a response!
+INFO:root:Loading from lists.json
+INFO:root:show list
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:looking up: hikouki
+INFO:root:got a response!
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:{'meta': {'status': 200}, 'data': [{'slug': '逃亡', 'is_common': True, 'tags': ['wanikani38'], 'jlpt': ['jlpt-n1'], 'japanese': [{'word': '逃亡', 'reading': 'とうぼう'}], 'senses': [{'english_definitions': ['escape', 'flight', 'running away', 'elopement', 'fleeing'], 'parts_of_speech': ['Noun', 'Suru verb'], 'links': [], 'tags': [], 'restrictions': [], 'see_also': [], 'antonyms': [], 'source': [], 'info': []}], 'attribution': {'jmdict': True, 'jmnedict': False, 'dbpedia': False}}, {'slug': '逃亡者', 'is_common': False, 'tags': ['wanikani40'], 'jlpt': [], 'japanese': [{'word': '逃亡者', 'reading': 'とうぼうしゃ'}], 'senses': [{'english_definitions': ['runaway', 'fugitive'], 'parts_of_speech': ['Noun'], 'links': [], 'tags': [], 'restrictions': [], 'see_also': [], 'antonyms': [], 'source': [], 'info': []}], 'attribution': {'jmdict': True, 'jmnedict': False, 'dbpedia': False}}, {'slug': '逃亡中', 'is_common': False, 'tags': [], 'jlpt': [], 'japanese': [{'word': '逃亡中', 'reading': 'とうぼうちゅう'}], 'senses': [{'english_definitions': ['at large', 'fugitive'], 'parts_of_speech': ['No-adjective'], 'links': [], 'tags': [], 'restrictions': [], 'see_also': [], 'antonyms': [], 'source': [], 'info': []}], 'attribution': {'jmdict': True, 'jmnedict': False, 'dbpedia': False}}, {'slug': '逃亡犯', 'is_common': False, 'tags': [], 'jlpt': [], 'japanese': [{'word': '逃亡犯', 'reading': 'とうぼうはん'}], 'senses': [{'english_definitions': ['fugitive from justice', 'fugitive criminal'], 'parts_of_speech': ['Noun'], 'links': [], 'tags': ['Abbreviation'], 'restrictions': [], 'see_also': ['逃亡犯罪人 とうぼうはんざいにん'], 'antonyms': [], 'source': [], 'info': []}], 'attribution': {'jmdict': True, 'jmnedict': False, 'dbpedia': False}}, {'slug': '逃亡生活', 'is_common': False, 'tags': [], 'jlpt': [], 'japanese': [{'word': '逃亡生活', 'reading': 'とうぼうせいかつ'}], 'senses': [{'english_definitions': ['life on the run'], 'parts_of_speech': ['Noun'], 'links': [], 'tags': [], 'restrictions': [], 'see_also': [], 'antonyms': [], 'source': [], 'info': []}], 'attribution': {'jmdict': True, 'jmnedict': False, 'dbpedia': False}}, {'slug': '逃亡犯罪人', 'is_common': False, 'tags': [], 'jlpt': [], 'japanese': [{'word': '逃亡犯罪人', 'reading': 'とうぼうはんざいにん'}], 'senses': [{'english_definitions': ['fugitive from justice', 'fugitive criminal'], 'parts_of_speech': ['Noun'], 'links': [], 'tags': [], 'restrictions': [], 'see_also': [], 'antonyms': [], 'source': [], 'info': []}], 'attribution': {'jmdict': True, 'jmnedict': False, 'dbpedia': False}}]}
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:Loading from lists.json
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:Loading from lists.json
+INFO:root:show list
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:save code
+INFO:root:Writing to lists.json
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:save code
+INFO:root:Writing to lists.json
+INFO:root:Loading from lists.json
+INFO:root:looking up: toubou
+INFO:root:got a response!
+INFO:root:save code

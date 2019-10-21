@@ -5,34 +5,47 @@ from dateutil.parser import parse
 import os
 import logging
 
+def get_logger(level, fname=None):
+    fname = fname or 'log'
+    logger= logging.getLogger()
+    logger.setLevel(level) # or whatever
+    handler = logging.FileHandler(fname, 'w', 'utf-8') # or whatever
+    formatter = logging.Formatter('%(name)s %(message)s') # or whatever
+    handler.setFormatter(formatter) # Pass handler as a parameter, not assign
+    logger.addHandler(handler)
+    return logger
+
+util_logger = get_logger(logging.INFO)
+
+
 # helpers
 def read_json(path):
     if not os.path.exists(path):
-        logging.info('No file found at '+path)
+        util_logger.info('No file found at '+path)
         init_json(path)
     with open(path, 'r', encoding='utf-8') as jsonf:
         contents = jsonf.read()
     try:
-        logging.info('Loading from '+path)
+        util_logger.info('Loading from '+path)
         ret = json.loads(contents)#, encoding='utf-8')
     except json.decoder.JSONDecodeError:
-        logging.error(f'The save file {path} is not in proper JSON form. \
+        util_logger.error(f'The save file {path} is not in proper JSON form. \
         Please delete the file or choose a different file, or you will not be able to save data.')
         ret = {}
     return ret
 
 
 def init_json(path):
-    logging.info('Creating file at '+path)
-    default_json = {'Favorites': []}
+    util_logger.info('Creating file at '+path)
+    default_json = {'Favorites': [], '.cur_list': 'Favorites'}
     with open(path, 'w+') as f:
         if not f.read():
             json.dump(default_json, f)
 
 
 def write_json(path, dictionary):
-    logging.info(f'Writing to '+path)
-    logging.debug(f'dict: '+ repr(dictionary))
+    util_logger.info(f'Writing to '+path)
+    util_logger.debug(f'dict: '+ repr(dictionary))
     def myconverter(o):
         if isinstance(o, datetime.datetime):
             return str(o)
@@ -53,11 +66,11 @@ def jisho_api(keyword):
     REQ_STR = r"https://jisho.org/api/v1/search/words?keyword="
     response = requests.get(REQ_STR + keyword)
     if response.status_code == 200:
-        logging.info('got a response!')
-        logging.info(response.json())
+        util_logger.info('got a response!')
+        #util_logger.info(response.json())
         return response.json()
     else:
-        logging.info(f'got response code {response.status_code}')
+        util_logger.info(f'got response code {response.status_code}')
         return {}
 
 
@@ -138,9 +151,9 @@ def get_json_entry(entries, letter, num):
     word_list = [w.get('word') for w in entry['entry']]
     if any(word_list):
         words = ', '.join(word_list)
-        reading = entry['entry'][-1]['reading']
+        reading = entry['entry'][0].get('reading') or ''
     else:
-        words = entry['entry'][-1]['reading']
+        words = entry['entry'][0].get('reading') or ''
         reading = ''
     return {
         "words": words,
@@ -156,7 +169,7 @@ def partial_dict(entry_id, def_id, d):
             entry = entries[letter]
             eng = entry['senses'][num]
         except (ValueError, KeyError) as e:
-            logging.error('Invalid input? Try another input.', str(e))
+            util_logger.error('Invalid input? Try another input.')
             return []
 
 

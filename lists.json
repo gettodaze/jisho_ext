@@ -27,16 +27,29 @@
     ],
     "dele": [
         {
-            "words": "試験管立て",
-            "reading": "しけんかんたて",
-            "eng": "test tube stand",
-            "timestamp": "2019-10-20 21:34:17.819466"
+            "words": "試し, 験し, 験",
+            "reading": "ためし",
+            "eng": "trial, test",
+            "timestamp": "2019-10-21 00:22:21.966637"
         },
         {
-            "words": "後悔",
-            "reading": "こうかい",
-            "eng": "regret, repentance, remorse",
-            "timestamp": "2019-10-20 21:43:52.214916"
+            "words": "DFSグループ",
+            "reading": "",
+            "eng": "DFS Galleria",
+            "timestamp": "2019-10-21 01:08:30.689413"
+        },
+        {
+            "words": "逃亡",
+            "reading": "とうぼう",
+            "eng": "escape, flight, running away, elopement, fleeing",
+            "timestamp": "2019-10-21 01:25:50.986087"
+        },
+        {
+            "words": "逃亡者",
+            "reading": "とうぼうしゃ",
+            "eng": "runaway, fugitive",
+            "timestamp": "2019-10-21 09:58:37.570769"
         }
-    ]
+    ],
+    ".cur_list": "dele"
 }
