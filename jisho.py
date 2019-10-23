@@ -178,7 +178,7 @@ class Jisho:
     def handle_print(self, lines, logger=logging.info):
         print(lines)
         if logger:
-            logger(lines)
+            logger(lines.strip())
 
 
     def save_entry(self, inp, note):
