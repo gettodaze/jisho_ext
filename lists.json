@@ -1,7 +1,7 @@
 {
     "Favorites": [],
     ".jj-default_list": "dele",
-    ".jj-display_num": 4,
+    ".jj-display_num": 7,
     ".jj-export_dir": "jisho_exports",
     "dele": [
         {
@@ -31,6 +31,76 @@
             "eng": "to swing, to wield (physically), to exert",
             "timestamp": "2019-10-21 16:29:11.917939",
             "note": ""
+        },
+        {
+            "words": "国選弁護人",
+            "reading": "こくせんべんごにん",
+            "eng": "court-appointed attorney",
+            "timestamp": "2019-10-22 21:03:50.937535",
+            "note": ""
+        },
+        {
+            "words": "弁護人",
+            "reading": "べんごにん",
+            "eng": "counsel, defender, advocate",
+            "timestamp": "2019-10-22 21:07:18.348420",
+            "note": ""
+        },
+        {
+            "words": "身内, 身うち",
+            "reading": "みうち",
+            "eng": "relatives, one's family",
+            "timestamp": "2019-10-22 21:07:39.079366",
+            "note": ""
+        },
+        {
+            "words": "請求書",
+            "reading": "せいきゅうしょ",
+            "eng": "bill, job invoice",
+            "timestamp": "2019-10-22 21:11:39.523360",
+            "note": ""
+        },
+        {
+            "words": "借金",
+            "reading": "しゃっきん",
+            "eng": "debt, loan, liabilities, borrowing money",
+            "timestamp": "2019-10-22 21:12:32.720586",
+            "note": ""
+        },
+        {
+            "words": "常駐",
+            "reading": "じょうちゅう",
+            "eng": "permanent stationing, staying permanently",
+            "timestamp": "2019-10-22 21:48:11.427053",
+            "note": ""
+        },
+        {
+            "words": "試し, 験し, 験",
+            "reading": "ためし",
+            "eng": "trial, test",
+            "timestamp": "2019-10-22 22:04:35.006074",
+            "note": ""
+        },
+        {
+            "words": "勤務先",
+            "reading": "きんむさき",
+            "eng": "place of employment",
+            "timestamp": "2019-10-22 22:31:26.564479",
+            "note": ""
+        },
+        {
+            "words": "任意",
+            "reading": "にんい",
+            "eng": "optional, voluntary, arbitrary, random, discretionary, facultative, spontaneous, any",
+            "timestamp": "2019-10-22 22:33:05.664003",
+            "note": ""
+        },
+        {
+            "words": "験, 験し, 試し",
+            "reading": "ためし",
+            "eng": "trial, test",
+            "timestamp": "2019-10-22 22:52:58.927289",
+            "note": "add note"
         }
     ]
 }

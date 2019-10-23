@@ -129,26 +129,32 @@ def inp_to_ref(inp):
 
 
 def get_json_entry(entries, letter, num):
+    logging.debug(f'get_json_entry: {letter}{num}')
     valid_letters = entries.keys()
     if letter not in valid_letters:
         raise ValueError(f"Letter {letter} is not in the valid set of entries ({list(valid_letters)}).")
     entry = entries[letter]
+    logging.debug(f'{letter} is valid! Refers to entry {entry} ')
     valid_nums = entry['senses'].keys()
     if num not in valid_nums:
         raise ValueError(f"Number {num} is not in the valid set of definitions ({list(valid_nums)}).")
     sense = entry['senses'][num]
-    word_list = [w.get('word') for w in entry['entry']]
-    if any(word_list):
+    logging.debug(f'{num} is valid! Refers to sense {sense}')
+    word_list = set([w['word'] for w in entry['entry'] if w.get('word')])
+    reading_list = set(w['reading'] for w in entry['entry'] if w.get('reading'))
+    if word_list:
         words = ', '.join(word_list)
-        reading = entry['entry'][0].get('reading') or ''
+        reading = ', '.join(reading_list)
     else:
-        words = entry['entry'][0].get('reading') or ''
+        words = ', '.join(reading_list) or ''
         reading = ''
-    return {
+    ret = {
         "words": words,
         "reading": reading,
         "eng": sense
     }
+    logging.debug(f'get_json_entry to return {ret}')
+    return ret
 
 
 def partial_dict(entry_id, def_id, d):

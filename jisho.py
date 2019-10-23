@@ -57,6 +57,13 @@ class Jisho:
             self.change_export_directory(second_arg)
         elif first_arg == '.S':
             self.save()
+        elif first_arg in ['.AN']:
+            args = inp.split(maxsplit=2)
+            if len(args) != 3:
+                self.handle_print('Improper number of arguments. Usage .AN <num> <note>, where num is from this list:')
+                self.show_list()
+            else:
+                self.add_note(args[1], args[2])
         elif utils.check_alphanum(first_arg):
             self.handle_save_code(first_arg, second_arg)
         else:
@@ -110,11 +117,29 @@ class Jisho:
 
     def show_list(self):
         logging.info('show list')
-        print(self.cur_list+":")
+        paragraph = self.cur_list+":\n"
         cur_list = self.lists[self.cur_list]
-        for i, o in enumerate(reversed(cur_list)):
-            entry_str = f'{i+1}. {o["words"]} {o["reading"]} {o["eng"]}'
-            print(entry_str[:50])
+        get_first = lambda x: x.split(',')[0]
+        for i, o in enumerate(cur_list):
+            entry_str = f'{i+1}. {get_first(o["words"])} {get_first(o["reading"])} {get_first(o["eng"])}.'
+            note = f' Note: {o["note"]}' if o['note'] else ''
+            printline = entry_str + note
+            paragraph += printline + '\n'
+        self.handle_print(paragraph)
+
+    def add_note(self, num, note):
+        logging.info('entered add note')
+        if not num.isdecimal():
+            self.handle_print(f"'{num}' is not a decimal.")
+            return
+
+        cur_list = self.lists[self.cur_list]
+        i = int(num) - 1
+        if i not in range(len(cur_list)):
+            self.handle_print('Invalid number.')
+        else:
+            cur_list[i]['note'] = note
+            self.save()
 
 
     def handle_save_code(self, code, note):
@@ -135,15 +160,18 @@ class Jisho:
 
         toprint = ''
         num_entries = len(self.cur_word)
+        logging.debug(f'num entries: {num_entries}. num shown: {self.num_shown}.')
         if self.num_shown >= num_entries:
-            self.num_shown == 0
+            self.num_shown = 0
+            logging.debug(f'reset num_shown to {self.num_shown}')
         if not num_entries:
             toprint += 'No word to print'
         else:
             show_low, show_high = self.num_shown + 1, min(num_entries, self.num_shown+self.display_num)
             toprint += f'Showing entries {show_low}-{show_high}/{num_entries}\n'
             print_str = utils.get_dictstring(self.cur_word, show_low-1, show_high)
-            toprint += print_str + '\nPress m to show more.'
+            show_more = '\nPress m to show more\n' if show_high < num_entries else ''
+            toprint += print_str + show_more
             self.num_shown = show_high
         self.handle_print(toprint, logging.debug)
 
@@ -155,7 +183,11 @@ class Jisho:
 
     def save_entry(self, inp, note):
         letter, num = utils.inp_to_ref(inp)
-        selected = utils.get_json_entry(self.cur_word, letter, num)
+        try:
+            selected = utils.get_json_entry(self.cur_word, letter, num)
+        except ValueError as e:
+            self.handle_print(e)
+            return
         selected['timestamp'] = datetime.datetime.now()
         selected['note'] = note
         if any([selected['words'] == x['words'] for x in self.lists[self.cur_list]]):
@@ -204,7 +236,7 @@ letter+number combo: save word-sense pair to list."""
 def main():
     logging.basicConfig(
         handlers=[logging.FileHandler('jisho.log', 'a+', 'utf-8')],
-        level=logging.INFO)
+        level=logging.DEBUG)
     j = Jisho()
     cont = True
     while cont:
