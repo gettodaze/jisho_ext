@@ -70,7 +70,7 @@ def resp_to_dict(resp):
         for i, sense in enumerate(senses):
             tdef = ', '.join(sense['english_definitions'])
             ret[i + 1] = tdef
-            return ret
+        return ret
 
     def strip_entry(entry):
         new_entry = {
@@ -91,7 +91,7 @@ def get_dictstring(d, start=None, end=None):
         japanese_words = [f'{w.get("word") or ""} ({w.get("reading") or ""})' for w in entry['entry']]
         entry_str = '; '.join(japanese_words) + '\n'
         for n, sense in entry['senses'].items():
-            semicolon = '; ' if i < len(entry['senses']) - 1 else ''
+            semicolon = '; ' if n < len(entry['senses']) else ''
             def_str = f'({n}) ' + sense + semicolon
             entry_str += def_str
         return entry_str

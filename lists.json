@@ -101,6 +101,104 @@
             "eng": "trial, test",
             "timestamp": "2019-10-22 22:52:58.927289",
             "note": "add note"
+        },
+        {
+            "words": "返済",
+            "reading": "へんさい",
+            "eng": "repayment, reimbursement, refund, redemption",
+            "timestamp": "2019-10-24 18:19:28.581202",
+            "note": ""
+        },
+        {
+            "words": "躊躇う",
+            "reading": "ためらう",
+            "eng": "to hesitate, to waver",
+            "timestamp": "2019-10-24 18:21:53.943452",
+            "note": ""
+        },
+        {
+            "words": "公判",
+            "reading": "こうはん",
+            "eng": "public hearing, trial",
+            "timestamp": "2019-10-24 18:22:50.120855",
+            "note": ""
+        },
+        {
+            "words": "連発, 連ぱつ",
+            "reading": "れんぱつ",
+            "eng": "running continuously, firing in rapid succession",
+            "timestamp": "2019-10-24 18:29:59.144483",
+            "note": ""
+        },
+        {
+            "words": "溺れる",
+            "reading": "おぼれる",
+            "eng": "to drown, to nearly drown, to sink below the surface (of water)",
+            "timestamp": "2019-10-24 18:42:57.493851",
+            "note": "jibun to no gyappu ni katteni oborete.."
+        },
+        {
+            "words": "当てる",
+            "reading": "あてる",
+            "eng": "to hit",
+            "timestamp": "2019-10-24 18:45:14.964508",
+            "note": "matte ateru -- wait, ill guess! (let me guess)"
+        },
+        {
+            "words": "双眼鏡",
+            "reading": "そうがんきょう",
+            "eng": "binoculars, field glasses",
+            "timestamp": "2019-10-24 18:46:15.016803",
+            "note": ""
+        },
+        {
+            "words": "遺書",
+            "reading": "いしょ",
+            "eng": "note left by dead person, suicide note, testamentary letter, will, testament",
+            "timestamp": "2019-10-24 18:51:34.542942",
+            "note": ""
+        },
+        {
+            "words": "パチンコ, ぱちんこ",
+            "reading": "",
+            "eng": "slingshot, catapult",
+            "timestamp": "2019-10-25 11:33:15.294223",
+            "note": ""
+        },
+        {
+            "words": "橡, 団栗",
+            "reading": "ドングリ, どんぐり",
+            "eng": "acorn",
+            "timestamp": "2019-10-25 11:40:31.903420",
+            "note": ""
+        },
+        {
+            "words": "大御所",
+            "reading": "おおごしょ",
+            "eng": "leading figure, influential figure, mogul",
+            "timestamp": "2019-10-25 11:42:21.612105",
+            "note": ""
+        },
+        {
+            "words": "線引き",
+            "reading": "せんびき, せんひき",
+            "eng": "delineation, demarcation",
+            "timestamp": "2019-10-25 11:45:30.679014",
+            "note": "naniga ___ nanoka sono senbiki ha hito ni yotte chigau"
+        },
+        {
+            "words": "会計課",
+            "reading": "かいけいか",
+            "eng": "accounts section, accounting section",
+            "timestamp": "2019-10-25 11:47:57.184543",
+            "note": ""
+        },
+        {
+            "words": "裏金",
+            "reading": "うらがね",
+            "eng": "secret fund, slush fund, money for bribery",
+            "timestamp": "2019-10-25 11:51:00.713476",
+            "note": ""
         }
     ]
 }
